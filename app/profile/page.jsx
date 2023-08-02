@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 
+import { getUserData, getReviewLinks } from "@utils/utils";
+
 import Profile from "@components/Profile";
 import QRCode from "@components/QRCode";
 import WebShare from "@components/WebShare";
@@ -10,6 +12,7 @@ import WebShare from "@components/WebShare";
 const MyProfile = () => {
   const { data: session } = useSession();
 
+  const [userData, setUserData] = useState({});
   const [reviewLinks, setReviewLinks] = useState([]);
   const [showQr, setShowQr] = useState(false);
   const userName = session?.user.name;
@@ -18,21 +21,16 @@ const MyProfile = () => {
   const [profileUrl, setProfileUrl] = useState("");
 
   useEffect(() => {
-    setProfileUrl(`${window.location.href}/${userId}`);
-  }, [userId]);
+    getUserData(session?.user.id, setUserData);
+  }, [session?.user.id]);
 
   useEffect(() => {
-    const fetchReviewLinks = async () => {
-      const response = await fetch(
-        `/api/users/reviewLinks/${session?.user.id}`
-      );
-      const data = await response.json();
-
-      setReviewLinks(data);
-    };
-
-    if (session?.user.id) fetchReviewLinks();
+    getReviewLinks(session?.user.id, setReviewLinks);
   }, [session?.user.id]);
+
+  useEffect(() => {
+    setProfileUrl(`${window.location.href}/${userId}`);
+  }, [userId]);
 
   const handleDeleteReviewLink = async (id) => {
     const hasConfirmed = confirm("Are you sure you want to delete this link?");
@@ -57,8 +55,10 @@ const MyProfile = () => {
       <header></header>
 
       <Profile
-        username={session?.user.name}
-        image={session?.user.image}
+        userId={userId}
+        username={userData.username}
+        website={userData.website}
+        image={userData.image}
         data={reviewLinks}
         handleDelete={handleDeleteReviewLink}
       />
