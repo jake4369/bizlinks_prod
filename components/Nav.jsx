@@ -3,12 +3,19 @@
 import { useSession, signIn, signOut } from "next-auth/react";
 import { useState, useEffect } from "react";
 
+import { getUserData } from "@utils/utils";
+
 import Image from "next/image";
 import Link from "next/link";
 
 const Nav = () => {
   const { data: session } = useSession();
+  const [userData, setUserData] = useState({});
   const [toggleDropdown, setToggleDropdown] = useState(false);
+
+  useEffect(() => {
+    getUserData(session?.user.id, setUserData);
+  }, [session?.user.id]);
 
   return (
     <nav>
@@ -44,7 +51,7 @@ const Nav = () => {
 
           <Link href="/profile">
             <Image
-              src={session?.user.image || "/assets/profile-placeholder.jpeg"}
+              src={userData.image || "/assets/profile-placeholder.jpeg"}
               alt="Profile photo"
               width={37}
               height={37}
@@ -63,7 +70,7 @@ const Nav = () => {
         <div className="nav__menu nav__mobile-menu">
           <div className="dropdownMenu__container">
             <Image
-              src={session?.user.image || "/assets/profile-placeholder.jpeg"}
+              src={userData.image || "/assets/profile-placeholder.jpeg"}
               alt="Profile photo"
               width={37}
               height={37}
