@@ -2,13 +2,7 @@ import Image from "next/image";
 import { GoLinkExternal } from "react-icons/go";
 import { FaTimes } from "react-icons/fa";
 
-import { useSession } from "next-auth/react";
-
-const LinkCard = ({ review, handleDelete }) => {
-  const { data: session } = useSession();
-
-  console.log(review);
-
+const LinkCard = ({ review, handleDelete, userId }) => {
   const siteName =
     review.reviewSiteMainUrl?.split(".")[0][0].toUpperCase() +
     review.reviewSiteMainUrl?.split(".")[0].slice(1);
@@ -27,7 +21,7 @@ const LinkCard = ({ review, handleDelete }) => {
 
       <p className="link-card__company-name">{siteName}</p>
 
-      {session?.user.id === review.creator._id ? (
+      {userId === review.creator._id ? (
         <FaTimes
           className="link-card__btn delete-icon"
           onClick={() => handleDelete(review._id)}
