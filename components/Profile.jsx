@@ -1,12 +1,9 @@
 import Image from "next/image";
-import { useSession } from "next-auth/react";
+import Link from "next/link";
 
 import LinkCard from "./LinkCard";
 
-const Profile = ({ username, image, website, data, handleDelete }) => {
-  console.log(username);
-  const { data: session } = useSession();
-
+const Profile = ({ userId, username, image, website, data, handleDelete }) => {
   return (
     <section className="profile">
       <div className="profile-info">
@@ -30,11 +27,14 @@ const Profile = ({ username, image, website, data, handleDelete }) => {
           {website ? website : ""}
         </a>
 
-        {session?.user.name === username && (
-          <button className="outline__btn edit-profile__btn hover-underline-animation">
+        {userId === data[0]?.creator._id ? (
+          <Link
+            href={`profile/edit/${userId}`}
+            className="outline__btn edit-profile__btn hover-underline-animation"
+          >
             Edit Profile
-          </button>
-        )}
+          </Link>
+        ) : null}
       </div>
 
       <div className="link-cards">
@@ -43,6 +43,7 @@ const Profile = ({ username, image, website, data, handleDelete }) => {
             key={review._id}
             review={review}
             handleDelete={handleDelete}
+            userId={userId}
           />
         ))}
       </div>
