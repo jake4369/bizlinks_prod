@@ -505,7 +505,7 @@ p {
   margin-bottom: 0;
 }
 /* ==========
- CREATE LINKS FORM
+ FORMS
  ========== */
 .section__create-links {
   display: flex;
@@ -526,7 +526,8 @@ p {
   margin-bottom: 2rem;
 }
 
-.create-links__form {
+.create-links__form,
+.edit-profile__form {
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -543,9 +544,11 @@ p {
   outline: none;
   color: #6b7280;
   background: #fff;
+  width: 100%;
 }
 
-.create-links__form label span {
+.create-links__form label span,
+.edit-profile__form label span {
   display: block;
   font-weight: 600;
   margin-bottom: 0.5rem;
@@ -562,6 +565,23 @@ p {
   font-size: 0.875rem;
   color: rgb(107 114 128);
   margin-right: 0.75rem;
+}
+
+/* EDIT PROFILE FORM */
+.edit-profile-page {
+  width: 87.2%;
+  max-width: 40rem;
+  margin: 0 auto;
+}
+
+.edit-profile-page h1 {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.edit-profile__form .blue__btn {
+  align-self: flex-end;
 }
 
 /* ========== 
@@ -670,6 +690,9 @@ p {
 }
 
 .link-card__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 0.25rem;
   border-radius: 0.375rem;
   font-size: 1.5rem;
