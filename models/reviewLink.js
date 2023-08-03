@@ -18,6 +18,12 @@ const ReviewLinkSchema = new Schema({
   siteIcon: {
     type: String,
   },
+  textColor: {
+    type: String,
+  },
+  backgroundColor: {
+    type: String,
+  },
 });
 
 const ReviewLink = models.ReviewLink || model("ReviewLink", ReviewLinkSchema);
