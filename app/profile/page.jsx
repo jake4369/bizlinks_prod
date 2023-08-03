@@ -53,7 +53,6 @@ const MyProfile = () => {
   return (
     <section className="my__profile">
       <header className="profile__header"></header>
-
       <Profile
         userId={userId}
         username={userData.username}
