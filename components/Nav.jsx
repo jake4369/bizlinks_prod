@@ -32,30 +32,31 @@ const Nav = () => {
       </Link>
 
       {/* DESKTOP MENU */}
-      <motion.div
-        transition={{ delay: 0.2 }}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-      >
-        {session?.user ? (
-          <div className="nav__menu nav__desktop-menu">
-            <Link href="/create-review-link" className="blue__btn">
-              Create Link
-            </Link>
 
-            <button
-              type="button"
-              onClick={() =>
-                signOut({
-                  callbackUrl: `${window.location.origin}`,
-                })
-              }
-              className="outline__btn hover-underline-animation"
+      {session?.user ? (
+        <div className="nav__menu nav__desktop-menu">
+          <Link href="/create-review-link" className="blue__btn">
+            Create Link
+          </Link>
+
+          <button
+            type="button"
+            onClick={() =>
+              signOut({
+                callbackUrl: `${window.location.origin}`,
+              })
+            }
+            className="outline__btn hover-underline-animation"
+          >
+            Sign Out
+          </button>
+
+          <Link href="/profile">
+            <motion.div
+              transition={{ delay: 0.5 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
             >
-              Sign Out
-            </button>
-
-            <Link href="/profile">
               <Image
                 src={userData.image || "/assets/profile-placeholder.jpeg"}
                 alt="Profile photo"
@@ -63,28 +64,28 @@ const Nav = () => {
                 height={37}
                 className="nav__profile-img"
               />
-            </Link>
-          </div>
-        ) : (
-          <button
-            onClick={() =>
-              signIn({
-                callbackUrl: `${window.location.origin}`,
-              })
-            }
-            className="blue__btn"
-          >
-            Sign in
-          </button>
-        )}
-      </motion.div>
+            </motion.div>
+          </Link>
+        </div>
+      ) : (
+        <button
+          onClick={() =>
+            signIn({
+              callbackUrl: `${window.location.origin}`,
+            })
+          }
+          className="blue__btn"
+        >
+          Sign in
+        </button>
+      )}
 
       {/* MOBILE MENU */}
       {session?.user ? (
         <div className="nav__menu nav__mobile-menu">
           <div className="dropdownMenu__container">
             <motion.div
-              transition={{ delay: 0.2 }}
+              transition={{ delay: 0.5 }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
             >
