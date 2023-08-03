@@ -2,6 +2,7 @@
 
 import { useSession, signIn, signOut } from "next-auth/react";
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 
 import { getUserData } from "@utils/utils";
 
@@ -31,52 +32,71 @@ const Nav = () => {
       </Link>
 
       {/* DESKTOP MENU */}
-      {session?.user ? (
-        <div className="nav__menu nav__desktop-menu">
-          <Link href="/create-review-link" className="blue__btn">
-            Create Link
-          </Link>
+      <motion.div
+        transition={{ delay: 0.2 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+      >
+        {session?.user ? (
+          <div className="nav__menu nav__desktop-menu">
+            <Link href="/create-review-link" className="blue__btn">
+              Create Link
+            </Link>
 
+            <button
+              type="button"
+              onClick={() =>
+                signOut({
+                  callbackUrl: `${window.location.origin}`,
+                })
+              }
+              className="outline__btn hover-underline-animation"
+            >
+              Sign Out
+            </button>
+
+            <Link href="/profile">
+              <Image
+                src={userData.image || "/assets/profile-placeholder.jpeg"}
+                alt="Profile photo"
+                width={37}
+                height={37}
+                className="nav__profile-img"
+              />
+            </Link>
+          </div>
+        ) : (
           <button
-            type="button"
             onClick={() =>
-              signOut({
+              signIn({
                 callbackUrl: `${window.location.origin}`,
               })
             }
-            className="outline__btn hover-underline-animation"
+            className="blue__btn"
           >
-            Sign Out
+            Sign in
           </button>
-
-          <Link href="/profile">
-            <Image
-              src={userData.image || "/assets/profile-placeholder.jpeg"}
-              alt="Profile photo"
-              width={37}
-              height={37}
-              className="nav__profile-img"
-            />
-          </Link>
-        </div>
-      ) : (
-        <button onClick={() => signIn()} className="blue__btn">
-          Sign in
-        </button>
-      )}
+        )}
+      </motion.div>
 
       {/* MOBILE MENU */}
       {session?.user ? (
         <div className="nav__menu nav__mobile-menu">
           <div className="dropdownMenu__container">
-            <Image
-              src={userData.image || "/assets/profile-placeholder.jpeg"}
-              alt="Profile photo"
-              width={37}
-              height={37}
-              className="nav__profile-img"
-              onClick={() => setToggleDropdown((prev) => !prev)}
-            />
+            <motion.div
+              transition={{ delay: 0.2 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+            >
+              <Image
+                src={userData.image || "/assets/profile-placeholder.jpeg"}
+                alt="Profile photo"
+                width={37}
+                height={37}
+                className="nav__profile-img"
+                onClick={() => setToggleDropdown((prev) => !prev)}
+              />
+            </motion.div>
 
             {toggleDropdown && (
               <ul className="dropdownMenu">
