@@ -5,6 +5,8 @@ import { useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
+import UploadPhotoButton from "@components/UploadPhotoButton";
+
 const EditProfile = () => {
   const { data: session } = useSession();
   const router = useRouter();
@@ -46,6 +48,8 @@ const EditProfile = () => {
   return (
     <div className="edit-profile-page">
       <h1 className="blue__gradient">Edit your profile</h1>
+
+      <UploadPhotoButton />
 
       <form
         className="edit-profile__form glassmorphism"

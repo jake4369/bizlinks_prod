@@ -19,7 +19,7 @@ const Profile = ({ userId, username, image, website, data, handleDelete }) => {
           className="profile__profile-img"
         />
 
-        <p className="desc text-center">
+        <p className="desc text-center profile__username">
           {username || data[0]?.creator.username}
         </p>
 
@@ -27,7 +27,7 @@ const Profile = ({ userId, username, image, website, data, handleDelete }) => {
           {website ? website : ""}
         </a>
 
-        {userId === data[0]?.creator._id ? (
+        {userId ? (
           <Link
             href={`profile/edit/${userId}`}
             className="outline__btn edit-profile__btn hover-underline-animation"
@@ -37,16 +37,25 @@ const Profile = ({ userId, username, image, website, data, handleDelete }) => {
         ) : null}
       </div>
 
-      <div className="link-cards">
-        {data.map((review) => (
-          <LinkCard
-            key={review._id}
-            review={review}
-            handleDelete={handleDelete}
-            userId={userId}
-          />
-        ))}
-      </div>
+      {data.length > 0 ? (
+        <div className="link-cards">
+          {data.map((review) => (
+            <LinkCard
+              key={review._id}
+              review={review}
+              handleDelete={handleDelete}
+              userId={userId}
+            />
+          ))}
+        </div>
+      ) : (
+        <div style={{ textAlign: "center" }}>
+          <p className="desc">No Links</p>
+          <Link href="/create-review-link" className="blue__gradient">
+            Click To Create
+          </Link>
+        </div>
+      )}
     </section>
   );
 };

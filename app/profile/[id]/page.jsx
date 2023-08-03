@@ -22,12 +22,16 @@ const UserProfile = ({ params }) => {
   }, [params.id]);
 
   return (
-    <Profile
-      data={userReviewLinks}
-      image={userData.image}
-      username={userData.username}
-      website={userData.website}
-    />
+    <div>
+      <header className="profile__header"></header>
+
+      <Profile
+        data={userReviewLinks}
+        image={userData.image}
+        username={userData.username}
+        website={userData.website}
+      />
+    </div>
   );
 };
 

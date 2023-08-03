@@ -13,11 +13,11 @@ export const PATCH = async (req, { params }) => {
       return new Response("User not found", { status: 404 });
     }
 
-    if (username !== undefined && username !== null) {
+    if (username !== undefined && username !== null && username !== "") {
       existingUser.username = username;
     }
 
-    if (website !== undefined && website !== null) {
+    if (website !== undefined && website !== null && website !== "") {
       existingUser.website = website;
     }
 

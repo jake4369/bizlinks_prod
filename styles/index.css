@@ -819,7 +819,7 @@ p {
   /* ========== 
   PROFILE
   ========== */
-  .my__profile header {
+  .profile__header {
     position: absolute;
     top: 0;
     width: 100%;
