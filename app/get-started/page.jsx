@@ -12,8 +12,8 @@ const GetStarted = () => {
           If you're new to Bizlinks and already have a{" "}
           <span className="blue__gradient">Google Account</span>, simply
           clicking the <span className="blue__gradient">'Sign In'</span> button
-          will instantly create an account for you, eliminating the need to fill
-          in any registration forms.
+          and signing in with Google will instantly create an account for you,
+          eliminating the need to fill in any registration forms.
         </p>
 
         <p>
