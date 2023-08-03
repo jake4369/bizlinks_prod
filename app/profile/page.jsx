@@ -16,7 +16,7 @@ const MyProfile = () => {
   const [userData, setUserData] = useState({});
   const [reviewLinks, setReviewLinks] = useState([]);
   const [showQr, setShowQr] = useState(false);
-  const userName = session?.user.name;
+  const userName = userData.username;
   const userId = session?.user.id;
 
   const [profileUrl, setProfileUrl] = useState("");
@@ -66,6 +66,7 @@ const MyProfile = () => {
           image={userData.image}
           data={reviewLinks}
           handleDelete={handleDeleteReviewLink}
+          priority
         />
 
         {reviewLinks.length > 0 ? (

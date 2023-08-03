@@ -15,6 +15,7 @@ const Loading = () => {
         height={50}
         alt="loader"
         className="object-contain"
+        priority
       />
     </div>
   );

@@ -30,6 +30,7 @@ const UserProfile = ({ params }) => {
         image={userData.image}
         username={userData.username}
         website={userData.website}
+        priority
       />
     </div>
   );
