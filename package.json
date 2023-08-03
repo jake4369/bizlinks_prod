@@ -12,6 +12,7 @@
     "@auth/mongodb-adapter": "^1.0.0",
     "@uploadthing/react": "^5.2.0",
     "bcrypt": "^5.1.0",
+    "framer-motion": "^10.15.0",
     "mongodb": "^5.7.0",
     "mongoose": "^7.4.1",
     "next": "13.4.12",
