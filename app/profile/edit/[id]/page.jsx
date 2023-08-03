@@ -16,6 +16,8 @@ const EditProfile = () => {
     website: "",
   });
 
+  const [savingChanges, setSavingChanges] = useState(false);
+
   const handleChange = (e) => {
     setUpdatedDetails((prev) => {
       return {
@@ -27,6 +29,7 @@ const EditProfile = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setSavingChanges(true);
 
     try {
       const response = await fetch(`/api/users/update/${session?.user.id}`, {
@@ -42,13 +45,13 @@ const EditProfile = () => {
       }
     } catch (error) {
       console.log(error);
+    } finally {
+      setSavingChanges(false);
     }
   };
 
   return (
     <div className="edit-profile-page">
-      <h1 className="blue__gradient">Edit your profile</h1>
-
       <UploadPhotoButton />
 
       <form
@@ -78,7 +81,9 @@ const EditProfile = () => {
           />
         </label>
 
-        <button className="blue__btn">Save</button>
+        <button className="blue__btn">
+          {savingChanges ? "Saving..." : "Save"}
+        </button>
       </form>
     </div>
   );
