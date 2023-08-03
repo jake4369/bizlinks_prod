@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
+import { motion } from "framer-motion";
 
 import { getUserData, getReviewLinks } from "@utils/utils";
 
@@ -51,41 +52,47 @@ const MyProfile = () => {
   };
 
   return (
-    <section className="my__profile">
-      <header className="profile__header"></header>
-      <Profile
-        userId={userId}
-        username={userData.username}
-        website={userData.website}
-        image={userData.image}
-        data={reviewLinks}
-        handleDelete={handleDeleteReviewLink}
-      />
+    <motion.div
+      transition={{ delay: 0.5 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+    >
+      <section className="my__profile">
+        <header className="profile__header"></header>
+        <Profile
+          userId={userId}
+          username={userData.username}
+          website={userData.website}
+          image={userData.image}
+          data={reviewLinks}
+          handleDelete={handleDeleteReviewLink}
+        />
 
-      {reviewLinks.length > 0 ? (
-        <div className="my-profile__share-btns">
-          <button className="blue__btn" onClick={() => setShowQr(true)}>
-            Show QR
-          </button>
+        {reviewLinks.length > 0 ? (
+          <div className="my-profile__share-btns">
+            <button className="blue__btn" onClick={() => setShowQr(true)}>
+              Show QR
+            </button>
 
-          <WebShare
-            className="blue__btn"
-            profileUrl={profileUrl}
-            userName={userName}
-          />
-        </div>
-      ) : null}
+            <WebShare
+              className="blue__btn"
+              profileUrl={profileUrl}
+              userName={userName}
+            />
+          </div>
+        ) : null}
 
-      {showQr && (
-        <div className="qr__modal">
-          <QRCode
-            profileUrl={profileUrl}
-            userName={userName}
-            setShowQr={setShowQr}
-          />
-        </div>
-      )}
-    </section>
+        {showQr && (
+          <div className="qr__modal">
+            <QRCode
+              profileUrl={profileUrl}
+              userName={userName}
+              setShowQr={setShowQr}
+            />
+          </div>
+        )}
+      </section>
+    </motion.div>
   );
 };
 
