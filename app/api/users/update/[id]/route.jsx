@@ -2,7 +2,7 @@ import { connectToDB } from "@utils/database";
 import User from "@models/user";
 
 export const PATCH = async (req, { params }) => {
-  const { username, website } = await req.json();
+  const { username, website, borderColor } = await req.json();
 
   try {
     await connectToDB();
@@ -19,6 +19,14 @@ export const PATCH = async (req, { params }) => {
 
     if (website !== undefined && website !== null && website !== "") {
       existingUser.website = website;
+    }
+
+    if (
+      borderColor !== undefined &&
+      borderColor !== null &&
+      borderColor !== ""
+    ) {
+      existingUser.borderColor = borderColor;
     }
 
     await existingUser.save();

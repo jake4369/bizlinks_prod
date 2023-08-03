@@ -14,6 +14,7 @@ const EditProfile = () => {
   const [updatedDetails, setUpdatedDetails] = useState({
     username: "",
     website: "",
+    borderColor: "",
   });
 
   const [savingChanges, setSavingChanges] = useState(false);
@@ -37,6 +38,7 @@ const EditProfile = () => {
         body: JSON.stringify({
           username: updatedDetails.username,
           website: updatedDetails.website,
+          borderColor: updatedDetails.borderColor,
         }),
       });
 
@@ -52,8 +54,6 @@ const EditProfile = () => {
 
   return (
     <div className="edit-profile-page">
-      <UploadPhotoButton />
-
       <form
         className="edit-profile__form glassmorphism"
         onSubmit={handleSubmit}
@@ -77,6 +77,16 @@ const EditProfile = () => {
             placeholder="www.example.com"
             name="website"
             value={updatedDetails.website}
+            onChange={handleChange}
+          />
+        </label>
+        <label>
+          <span>Image Border</span>
+          <input
+            type="color"
+            placeholder="www.example.com"
+            name="borderColor"
+            value={updatedDetails.borderColor}
             onChange={handleChange}
           />
         </label>

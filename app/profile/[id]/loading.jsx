@@ -10,7 +10,7 @@ const Loading = () => {
       }}
     >
       <Image
-        src="assets/loader.svg"
+        src="/assets/loader.svg"
         width={50}
         height={50}
         alt="loader"
