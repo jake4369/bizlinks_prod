@@ -15,6 +15,9 @@ const UserSchema = new Schema({
   website: {
     type: String,
   },
+  borderColor: {
+    type: String,
+  },
 });
 
 const User = models.User || model("User", UserSchema);

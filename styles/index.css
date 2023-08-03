@@ -646,6 +646,7 @@ p {
 .profile__profile-img {
   border-radius: 50%;
   margin-bottom: 1rem;
+  border: 0.25rem solid #fff;
 }
 
 .profile__username {
